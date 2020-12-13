@@ -1,0 +1,39 @@
+.form {
+  width: 80%;
+  display: flex;
+  flex-flow: row wrap;
+  border: 1px solid $gray--light;
+  border-bottom-left-radius: 0.6rem;
+  border-bottom-right-radius: 0.6rem;
+  overflow: hidden;
+  @include box-shadow;
+
+  &__input {
+    width: 43%;
+    height: 2rem;
+    font-size: 0.8rem;
+    padding: 0;
+    padding-left: 2%;
+    margin: 0;
+    border: none;
+    background-color: white;
+    outline: none;
+  }
+
+  &__input:nth-child(2) {
+    padding-right: 25%;
+    width: 18%;
+  }
+
+  button {
+    width: 10%;
+    height: 2rem;
+    font-size: 0.8rem;
+    padding: 0;
+    margin: 0;
+    border: none;
+    background-color: white;
+    cursor: pointer;
+    outline: none;
+  }
+}

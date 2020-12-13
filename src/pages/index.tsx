@@ -1,14 +1,17 @@
 import React from "react"
-import { Link } from 'gatsby'
-import Layout from '../components/layout';
+import Layout from '../components/Layout';
+import Form from '../components/Form'
+import List from '../components/List'
 
-const Home = () => {
+import '../scss/app.scss'
+
+export default function Home() {
   return (
     <Layout>
-      <h1>Hello Gatsby!</h1>
-      <Link to='/about/'>About</Link>
+      <section className="toDoList">
+        <List />
+        <Form />
+      </section>
     </Layout>
   )
 }
-
-export default Home;

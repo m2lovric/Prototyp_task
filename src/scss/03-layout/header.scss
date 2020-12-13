@@ -1,0 +1,58 @@
+header {
+  background-color: white;
+  height: 60px;
+  @include box-shadow;
+  display: flex;
+  align-items: center;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'Dosis', sans-serif;
+
+  &__logo {
+    margin: 0;
+    justify-self: flex-start;
+    font-weight: 200;
+    font-size: 1.5rem;
+    text-decoration: none;
+    color: $black;
+  }
+
+  &__sign {
+    justify-self: flex-end;
+
+    display: flex;
+    align-items: center;
+
+    .link:nth-child(1) {
+      background-color: $pink;
+    }
+
+    .link:nth-child(2) {
+      background-color: $yellow;
+    }
+
+    .link {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 120px;
+      font-family: 'Dosis', sans-serif;
+      font-size: 1rem;
+      font-weight: 800;
+      margin-right: 10%;
+      color: white;
+      padding: 0.25rem 0.75rem;
+      border-radius: 6px;
+      text-decoration: none;
+      text-transform: uppercase;
+      border: none;
+      outline: none;
+    }
+
+  }
+}

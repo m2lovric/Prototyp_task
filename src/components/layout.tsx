@@ -1,8 +1,10 @@
-import React from 'react'
+import React, { ComponentProps } from 'react'
+import Header from './Header/Header';
 
-const Layout = ({ children }) => {
+const Layout = ({ children }: any) => {
   return (
     <main>
+      <Header />
       {children}
     </main>
   )

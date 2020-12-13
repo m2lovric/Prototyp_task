@@ -1,0 +1,47 @@
+.sign {
+  font-family: 'Roboto', sans-serif;
+  width: 50%;
+  margin: 5% auto;
+  @include darker-box-shadow;
+  border-radius: 10px;
+
+  article {
+    padding: 5%;
+    font-weight: 600;
+    font-size: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__form {
+    padding: 5%;
+    display: flex;
+    flex-flow: column wrap;
+  }
+
+  input {
+    margin: 0.5rem 0 2rem 0;
+    border: 1px solid $gray--light;
+    height: 2.25rem;
+    border-radius: 5px;
+    outline: none;
+    padding-left: 5%;
+  }
+
+  &__btn {
+    font-family: 'Roboto', sans-serif;
+    color: white;
+    border: none;
+    border-radius: 2px;
+    height: 2.25rem;
+    text-align: center;
+    font-weight: 800;
+    background-color: $yellow;
+    cursor: pointer;
+  }
+
+  .red {
+    background-color: $pink;
+  }
+}

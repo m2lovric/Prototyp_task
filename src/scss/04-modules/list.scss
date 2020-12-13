@@ -1,0 +1,57 @@
+.list {
+  width: 80%;
+  background-color: white;
+  @include box-shadow;
+  border-top-left-radius: 0.6rem;
+  border-top-right-radius: 0.6rem;
+  overflow: hidden;
+  border: 1px solid $gray--light;
+  border-bottom: none;
+
+  &__task {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 1% 2%;
+    border-bottom: 1px solid $gray--light;
+    font-weight: 400;
+    font-size: 0.8rem;
+    font-family: 'Roboto', sans-serif;
+
+    &__task {
+      width: 45%;
+    }
+
+    &__dueDate {
+      padding-left: 2%;
+    }
+
+    &__done {
+      border-radius: 50%;
+      border: none;
+      width: 10px;
+      height: 10px;
+      padding: 0;
+      margin: 0;
+      outline: none;
+      cursor: pointer;
+      margin-left: 10%;
+    }
+
+    .red {
+      background-color: $pink;
+    }
+
+    .green {
+      background-color: green;
+    }
+
+    &__remove {
+      margin-left: 10%;
+    }
+  }
+
+  &__task:last-child {
+    border-bottom: none;
+  }
+}
