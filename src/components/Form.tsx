@@ -1,37 +1,52 @@
-import React from 'react'
+import React, { FormEvent, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { newTask } from '../redux/actions'
 import { db } from '../firebase/app'
-import { v4 } from 'uuid';
+import { IRootState } from '../redux/store';
 
 const Form = () => {
-  const dispatch = useDispatch();
-  const user = useSelector((state: []) => state.user);
+  const [task, setTask] = useState('');
+  const [dueDate, setDueDate] = useState('');
 
-  const addTask = (e: any) => {
+  const dispatch = useDispatch();
+
+  interface User {
+    uid?: string
+  }
+
+  const user: User = useSelector<IRootState, object>((state) => state.user);
+
+  const addTask = (e: FormEvent) => {
     e.preventDefault();
-    const task = e.target.task.value;
-    const dueDate = e.target.duedate.value;
-    e.target.task.value = '';
-    e.target.duedate.value = '';
-    if(user.uid){
+
+    if (user.uid) {
       db.collection('users').doc(user.uid).collection('tasks').add({
-        task : {
+        task: {
           task,
           dueDate,
           done: false
         }
-      }).then(res => {
+      }).then(res => {        
+        //reset input fields after submit
+        const taskReset = document.getElementById('task') as HTMLInputElement;
+        const dueDateReset = document.getElementById('dueDate') as HTMLInputElement;
+        taskReset.value = '';
+        dueDateReset.value = '';
         return res;
-      })
+      });
     } else {
-      dispatch(newTask(task, dueDate))
+      dispatch(newTask(task, dueDate));
+      //reset input fields after submit
+      const taskReset = document.getElementById('task') as HTMLInputElement;
+      const dueDateReset = document.getElementById('dueDate') as HTMLInputElement;
+      taskReset.value = '';
+      dueDateReset.value = '';
     }
   }
   return (
     <form className="form" onSubmit={addTask}>
-      <input type="text" name="task" placeholder="Enter a task :" id="" className="form__input" />
-      <input type="datetime-local" name="duedate" id="" className="form__input" />
+      <input type="text" placeholder="Enter a task :" id="task" className="form__input" onChange={e => setTask(e.currentTarget.value)} />
+      <input type="datetime-local" id="dueDate" className="form__input" onChange={e => setDueDate(e.currentTarget.value)} />
       <button type="submit">+</button>
     </form>
   )
