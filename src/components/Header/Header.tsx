@@ -2,13 +2,10 @@ import { Link } from 'gatsby'
 import React from 'react'
 import { useSelector } from 'react-redux'
 import { signOut } from '../../firebase/auth';
-
-interface State<T extends object> {
-  state: T
-}
+import { IRootState } from '../../redux/store';
 
 const Header = () => {
-  const user = useSelector((state: any) => state.user);
+  const user = useSelector((state: IRootState) => state.user);
 
   return (
     <header>
