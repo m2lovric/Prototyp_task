@@ -1,6 +1,7 @@
 import { v4 } from 'uuid';
+import { ObjectTask } from './store';
 
-export const newTask = (task: string, dueDate: Date) => {
+export const newTask = (task: string, dueDate: string) => {
   const id = () => {
     const taskId = v4();
     return taskId;
@@ -17,14 +18,14 @@ export const newTask = (task: string, dueDate: Date) => {
   }
 }
 
-export const removeTaskAction = (state: any) => {
+export const removeTaskAction = (state: ObjectTask) => {
   return {
     type: 'REMOVE',
     data: state
   }
 }
 
-export const userExist = (state: any) => {
+export const userExist = (state: object) => {
   return {
     type: 'USER_EXIST',
     data : state
