@@ -1,6 +1,7 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { removeTaskAction } from '../redux/actions'
+import { IRootState } from '../redux/store';
 
 const Task = () => {
   interface ObjectTask {
@@ -10,12 +11,12 @@ const Task = () => {
     done: boolean
   }
 
-  const tasks = useSelector((state: []) => state.task);
+  const tasks = useSelector<IRootState, ObjectTask[]>((state) => state.task );
   const dispatch = useDispatch();
 
-  const removeTask = (e: any) => {
-    const id = e.target.dataset.id;
-    const modState = tasks.filter((task: ObjectTask) => {
+  const removeTask = (e: React.SyntheticEvent<HTMLButtonElement>) => {
+    const id = e.currentTarget.dataset.id;
+    const modState = tasks.filter((task) => {
       return id !== task.id
     });
     dispatch(removeTaskAction(modState))
