@@ -1,15 +1,10 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { removeTaskAction } from '../redux/actions'
-import { IRootState } from '../redux/store';
+import { IRootState, ObjectTask } from '../redux/store';
 
 const Task = () => {
-  interface ObjectTask {
-    id: string,
-    task: string,
-    dueDate: Date,
-    done: boolean
-  }
+  
 
   const tasks = useSelector<IRootState, ObjectTask[]>((state) => state.task );
   const dispatch = useDispatch();
@@ -39,5 +34,4 @@ const Task = () => {
     </section>
   )
 }
-
 export default Task;
