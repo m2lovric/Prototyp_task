@@ -18,7 +18,14 @@ export const newTask = (task: string, dueDate: string) => {
   }
 }
 
-export const removeTaskAction = (state: ObjectTask) => {
+export const handleDoneStatus = (state: ObjectTask[]) => {
+  return {
+    type: 'DONE',
+    data: state
+  }
+}
+
+export const removeTaskAction = (state: ObjectTask[]) => {
   return {
     type: 'REMOVE',
     data: state
@@ -29,5 +36,11 @@ export const userExist = (state: object) => {
   return {
     type: 'USER_EXIST',
     data : state
+  }
+}
+
+export const resetTaskState = () => {
+  return {
+    type: 'TASK_RESET',
   }
 }
