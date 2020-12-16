@@ -1,9 +1,11 @@
 import React from "react"
 import Layout from '../components/Layout'
 import { useSelector} from 'react-redux'
+import { IRootState } from '../redux/store';
 
 const Profile = () => {
-  const user = useSelector((state: []) => state.user);
+  
+  const user = useSelector((state: IRootState) => state.user);
   return (
     <Layout>
       <h1>Profile</h1>
