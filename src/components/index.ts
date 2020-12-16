@@ -1,17 +1,6 @@
-import Form from './Form'
-import Header from './Header'
-import Layout from './Layout';
-import List from './List';
-import Task from './Task';
-import LogIn from './LogIn';
-import SignUp from './SignUp';
-
-export {
-  Form,
-  Header,
-  Layout,
-  List,
-  Task,
-  LogIn,
-  SignUp
-}
+export {default as Form} from './Form'
+export {default as Layout} from './Layout';
+export {default as List} from './List';
+export {default as Task} from './Task';
+export {default as Header} from './Header/Header';
+export {default as Footer} from './Footer';
