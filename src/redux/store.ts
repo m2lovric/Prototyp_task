@@ -15,6 +15,13 @@ export interface IRootState {
   user: UserState
 }
 
+export interface ObjectTask {
+  id: string,
+  task: string,
+  dueDate: Date,
+  done: boolean
+}
+
 const createStore = (reducer: any, state: IRootState) => reduxCreateStore(reducer, state)
 
 export default createStore
