@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { FormEvent, useState } from 'react'
 import { signUp } from '../firebase/auth'
 import Layout from '../components/Layout'
 import { Link, navigate } from 'gatsby'
@@ -9,7 +9,7 @@ const SignUp = () => {
   const [password, setPassword] = useState('');
   const [passwordConfirm, setPasswordConfirm] = useState('');
 
-  const signUpForm = (e: any) => {
+  const signUpForm = (e: FormEvent) => {
     e.preventDefault();
     signUp(email, password, passwordConfirm);
     navigate('/');
@@ -23,10 +23,10 @@ const SignUp = () => {
         </article>
         <form className="sign__form" onSubmit={signUpForm}>
           <label htmlFor="email">Email</label>
-          <input type="email" name="email" id="signup_email" onChange={(e) => setEmail(e.target.value)} />
+          <input type="email" name="email" id="signup_email" onChange={(e) => setEmail(e.currentTarget.value)} />
 
           <label htmlFor="password">Password</label>
-          <input type="password" name="password" id="signup_password" onChange={(e) => setPassword(e.target.value)} />
+          <input type="password" name="password" id="signup_password" onChange={(e) => setPassword(e.currentTarget.value)} />
 
           <label htmlFor="password_confirm">Confirm Password</label>
           <input type="password" name="password_confirm" id="signup_password_confirm" onChange={(e) => setPasswordConfirm(e.target.value)} />
