@@ -19,9 +19,5 @@ const extension = typeof window !== 'undefined' && window.__REDUX_DEVTOOLS_EXTEN
 export const store = createStore(allReducers, extension);
 
 export default ({ element }) => {
-
-  store.subscribe(() => {
-    saveState(store.getState().task)
-  })
   return <Provider store={store}>{element}</Provider>
 }

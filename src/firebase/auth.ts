@@ -1,22 +1,27 @@
 import { auth, db } from './app';
 import { store } from '../../wrap-with-provider'
-import { userExist, resetTaskState } from '../redux/actions';
+import { userExist, resetTaskState, addFromFirebase } from '../redux/actions';
 import { navigate } from 'gatsby'
 import { ObjectTask } from '../redux/store';
+import { saveState } from '../localStorage/localStorage';
 
 export const authState = auth.onAuthStateChanged((user) => {
   if( user === null) {
     store.dispatch(userExist({}));
+    store.subscribe(() => {
+      saveState(store.getState().task)
+    })
   } else {
     store.dispatch(userExist(user));
 
     //Remove data from localStorage and add it to firebase
     const data = localStorage.getItem('state');
+    localStorage.removeItem('state');
     const jsonData: ObjectTask[] = JSON.parse(data || '');
     const removeIds = jsonData.map(({id, ...rest}) => {
       return {...rest}
     });
-    localStorage.removeItem('state');
+
     removeIds.map(task => {
       db.collection('users').doc(user.uid).collection('tasks').add({
         task: {...task}
@@ -24,6 +29,18 @@ export const authState = auth.onAuthStateChanged((user) => {
         store.dispatch(resetTaskState());
         return res;
       })
+    });
+
+    //Get data from firestore
+    db.collection('users').doc(user.uid).collection('tasks').get().then( snapshot =>{
+      const data = snapshot.docs.map(doc => {
+        return {
+          id: doc.id,
+          ...doc.data().task
+        }
+      })
+      
+      store.dispatch(addFromFirebase(data));
     })
   }
   return user;
