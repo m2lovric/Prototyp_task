@@ -12,6 +12,8 @@ export const taskReducer = (state = persistedData || [], action: any) => {
       return state = action.data
     case 'TASK_RESET':
       return state = []
+    case 'ADD_FROM_FIREBASE':
+      return state = action.data
     default:
       return state
   }
