@@ -18,6 +18,13 @@ export const newTask = (task: string, dueDate: string) => {
   }
 }
 
+export const addFromFirebase = (state: ObjectTask[]) => {
+  return {
+    type: 'ADD_FROM_FIREBASE',
+    data: state
+  }
+}
+
 export const handleDoneStatus = (state: ObjectTask[]) => {
   return {
     type: 'DONE',
